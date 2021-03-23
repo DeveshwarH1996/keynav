@@ -1,0 +1,103 @@
+# This is a keynavrc file. Yours should live in 
+# $HOME/.config/keynav/keynavrc
+#
+# Lines beginning with '#' are comments.
+# Format is:
+#   keysequence cmd1,cmd2,cmd3...
+#
+# Other special values are:
+#   'clear' on a line by itself (no quotes) will erase all keybindings
+#   (including the defaults)
+#   'daemonize' on a line by itself (no quotes) will make keynav background
+#   after parsing the configfile and having no critical errors.
+# 
+# The 'start' command alone is handled specially, in that any key sequence
+# mapped to 'start' will be grabbed when keynav starts up so you can invoke it
+# to activate keynav. The remaining keys are only recognized while keynav is
+# active
+#
+# Project page; http://www.semicomplete.com/projects/keynav
+
+# Use 'clear' to blow away any previous keybindings
+#clear
+
+# Use 'daemonize' to background ourselves.
+#daemonize
+
+### Example using a 3x3 grid with nethack-vi keys
+ctrl+semicolon start, grid 3x3
+semicolon start, grid 3x3
+Escape end
+ctrl+bracketleft end
+
+w cell-select 1x1      
+e cell-select 1x2      
+r cell-select 1x3      
+s cell-select 2x1      
+d cell-select 2x2      
+f cell-select 2x3      
+x cell-select 3x1      
+c cell-select 3x2      
+v cell-select 3x3      
+
+### Example of cut and move without the default values
+j move-left .50
+comma move-down .50
+i move-up .50
+l move-right .50
+
+# Arrow keys can move the grid as welll
+Left move-left
+Down move-down
+Up move-up
+Right move-right
+
+
+space warp,click 1,end
+semicolon warp,end
+1 click 1
+2 click 2
+3 click 3
+
+w windowzoom
+
+# Zoom to the cursor location with a given height and width
+c cursorzoom 200 200
+
+# Handy for holding ctrl while using keynav:
+ctrl+h cut-left
+ctrl+j cut-down
+ctrl+k cut-up
+ctrl+l cut-right
+ctrl+y cut-left,cut-up
+ctrl+u cut-right,cut-up
+ctrl+b cut-left,cut-down
+ctrl+n cut-right,cut-down
+
+# Arrow keys can move the grid as welll
+shift+Left move-left
+shift+Down move-down
+shift+Up move-up
+shift+Right move-right
+ctrl+Left cut-left
+ctrl+Down cut-down
+ctrl+Up cut-up
+ctrl+Right cut-right
+ctrl+shift+Left move-left
+ctrl+shift+Down move-down
+ctrl+shift+Up move-up
+ctrl+shift+Right move-right
+
+# Record keynav actions
+q record
+shift+at playback
+
+### Example using the 'sh' command.
+# Make firefox the active window
+ctrl+e sh "xdotool windowactivate $(xdotool search -title -- '- Mozilla Firefox')", end
+# Make a new tab in google chrome:
+t sh "xdotool windowactivate $(xdotool search --title -- '- Google Chrome' | head -1); xdotool key ctrl+t",end
+# Paste
+v sh "xdotool key shift+Insert"
+
+
